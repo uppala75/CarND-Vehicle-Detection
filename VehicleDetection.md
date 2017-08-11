@@ -1,5 +1,5 @@
 
-## Vehicle Detection Project
+## Vehicle Detection and tracking Project
 
 ### The goals for this project are the following:
 
@@ -8,6 +8,12 @@
 ### - Implement a sliding-window technique and use the trained classifier to search for vehicles in images.
 ### - Run the pipeline on a video stream (start with the test_video.mp4 and later implement on full project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 ### - Estimate a bounding box for vehicles detected.
+
+### Report: VehicleDetection.md
+### Jupyter notebook: VehicleDetection.ipynb
+### images4report/ : Directory which contains images used in this report
+### test_images/ : Directory which contains test images
+### Final result [video](https://youtu.be/p6XqE0PpqIM)
 
 ### Import the necessary libraries and functions
 
@@ -357,8 +363,7 @@ visualize(fig, 1, 4, images, titles)
 ```
 
 
-![png](output_8_0.png)
-
+![png](./images4report/output_8_0.png)
 
 ### 2. Explain how you settled on your final choice of HOG parameters.
 ### In the cell below, I used all hog channels by keeping the orientation, pix_per_cell, cell_per_block constant and derived the HOG features. I also kept the spatial size and color histogram bins constant to derive these features. The extract_features() function extracts all the above features together. As a first step, I experimented with different color spaces.  My thought process was to check for a balance between the test accuracy and the prediction time on the classifier with different color spaces. Once I pick the best option and look at the end result, I can revisit and review if further tuning is needed for the HOG parameters and the parameters for the other features. As seen in the results of the cell below, the color space 'YCrCb' shows a good balance between accuracy among all the color spaces and low prediction time. Furthermore, the time taken to train the SVC and to compute the features is quite low as well when compared to the other color spaces. 
@@ -623,7 +628,7 @@ visualize(fig,3,2,images,titles)
     
 
 
-![png](output_14_3.png)
+![png](./images4report/output_14_3.png)
 
 
 ### 4. Sliding Window Search
@@ -752,7 +757,7 @@ visualize(fig, 6, 2, out_images, out_titles)
     
 
 
-![png](output_17_1.png)
+![png](./images4report/output_17_1.png)
 
 
 #### The cell below uses the code in the previous cell to create a find_cars() function
@@ -895,27 +900,27 @@ for img_src in example_images:
 ```
 
 
-![png](output_23_0.png)
+![png](./images4report/output_23_0.png)
 
 
 
-![png](output_23_1.png)
+![png](./images4report/output_23_1.png)
 
 
 
-![png](output_23_2.png)
+![png](./images4report/output_23_2.png)
 
 
 
-![png](output_23_3.png)
+![png](./images4report/output_23_3.png)
 
 
 
-![png](output_23_4.png)
+![png](./images4report/output_23_4.png)
 
 
 
-![png](output_23_5.png)
+![png](./images4report/output_23_5.png)
 
 
 ### Pipeline for the video to detect recurring cars frame by frame and reject outliers using a threshold. Multiple frames were integrated and a threshold was applied to ensure there are no false positives
@@ -977,7 +982,7 @@ output_clip.write_videofile(proj_output, audio=False)
     [MoviePy] Done.
     [MoviePy] >>>> Video ready: project_video_output.mp4 
     
-    
+  ### Link to the output [Video](https://youtu.be/p6XqE0PpqIM)   
 
 
 ```python
@@ -1000,7 +1005,7 @@ HTML("""
 
 
 ### Summary:
-### Although the SVM classifier method works for this test case and is a great way to understand the concepts on what it takes to detect and track vehicles, it is also quite slow i.e., the time taken to search through the windows in the region of interest within an image takes ~0.35 seconds per image. This may not be applicable in real world situations when there are many different types of vehicles, pedestrians, bicycles etc. A better approach would be to use a neural network or a YOLO (You Only Look Once) classifier approach (https://www.ted.com/talks/joseph_redmon_how_a_computer_learns_to_recognize_objects_instantly) which works in real time. Another issue is that a lot more data is needed to train the SVM to avoid false positives and that would make it even slower. Different window sizes would also need to be combined if cars further away need to be detected, adding to the processing time and computing resources. In the case of freeway driving similar to the one in the project video, the divider separates oncoming traffic. However, we would also need to consider oncoming traffic where there are no dividers on highways. To address this situation, we would need HOG data for oncoming vehicles to train the classifier, which (you guessed it) adds to the processing time as well.
+### Although the SVM classifier method works for this test case and is a great way to understand the concepts on what it takes to detect and track vehicles, it is also quite slow i.e., the time taken to search through the windows in the region of interest within an image takes ~0.35 seconds per image. This may not be applicable in real world situations when there are many different types of vehicles, pedestrians, bicycles etc. A better approach would be to use a neural network or a YOLO (You Only Look Once) classifier [approach](https://www.ted.com/talks/joseph_redmon_how_a_computer_learns_to_recognize_objects_instantly) which works in real time. Another issue is that a lot more data is needed to train the SVM to avoid false positives and that would make it even slower. Different window sizes would also need to be combined if cars further away need to be detected, adding to the processing time and computing resources. In the case of freeway driving similar to the one in the project video, the divider separates oncoming traffic. However, we would also need to consider oncoming traffic where there are no dividers on highways. To address this situation, we would need HOG data for oncoming vehicles to train the classifier, which (you guessed it) adds to the processing time as well.
 
 
 ```python
