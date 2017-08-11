@@ -9,13 +9,15 @@
 ### - Run the pipeline on a video stream (start with the test_video.mp4 and later implement on full project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 ### - Estimate a bounding box for vehicles detected.
 
-### -----------------Relevant files in github repo----------------------
+#### -----------------Relevant files in github repo----------------------
 
-### Report: VehicleDetection.md
-### Jupyter notebook: VehicleDetection.ipynb
-### images4report/ : Directory which contains images used in this report
-### test_images/ : Directory which contains test images
-### Final result [video](https://youtu.be/p6XqE0PpqIM)
+#### Report: VehicleDetection.md
+#### Jupyter notebook: VehicleDetection.ipynb
+#### images4report/ : Directory which contains images used in this report
+#### test_images/ : Directory which contains test images
+#### Final result [video](https://youtu.be/p6XqE0PpqIM)
+#### --------------------------------------------------------------------
+
 
 ### Import the necessary libraries and functions
 
